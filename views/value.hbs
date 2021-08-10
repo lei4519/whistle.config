@@ -6,6 +6,17 @@
     <meta http-equiv='X-UA-Compatible' content='ie=edge' />
     <title>Whistle.Config</title>
     <style>
+      main {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      section {
+        flex: 0 0 48%;
+        background: #f1f1f1;
+        padding: 0 16px;
+        margin-bottom: 16px;
+      }
       dt {
         display: flex;
         justify-content: space-between;
@@ -19,31 +30,38 @@
         margin: 0 0 16px 0;
         padding:
           8px 16px;
-        box-shadow: 0px 3px 3px #ccc;
+        box-shadow: 0 3px 3px #ccc;
         background-color: #eee;
       }
-
     </style>
   </head>
 
   <body>
     <h1>Whistle Dynamic Rules</h1>
-    <dl>
-      {{#each rules}}
-        <dt>
-          <span>{{@key}}</span>
-          <button
-            onclick="fetch('/plugin.config/config?id={{this}}', {method: 'DELETE'})">删除</button>
-        </dt>
-        <dd>
+    <main>
+      <section>
+        <h2>Rules List</h2>
+        <dl>
+          {{#each rules}}
+            <dt>
+              <span>{{@key}}</span>
+              <button
+                      onclick="fetch('/plugin.config/rules?id={{@key}}', {method: 'DELETE'}).then(() => window.location.reload())">删除</button>
+            </dt>
+            <dd>
           <pre>
-          {{this}}
+            {{this}}
           </pre>
-        </dd>
-      {{/each}}
-    </dl>
+            </dd>
+          {{/each}}
+        </dl>
+      </section>
+      <section>
+        <h2>Rules Text</h2>
+        <pre>{{text}}</pre>
+      </section>
+    </main>
 
-    <pre>{{value}}</pre>
   </body>
 
 </html>

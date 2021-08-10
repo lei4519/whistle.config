@@ -1,9 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
+const {PORT_FILE, RULES_FILE} = require('./const')
 const resolve = (v) => path.resolve(__dirname, v);
-
-const PORT_FILE = '.port';
-const RULES_FILE = '.rules';
 
 const writeFileSync = (filename, data) =>
   fs.writeFileSync(resolve(filename), data);
@@ -24,10 +22,10 @@ const readJsonRules = () => {
 
 let textRules = '';
 const readTextRules = () => {
-  const rules = readJsonRules();
   if (readTextRules.dirty) {
+    const rules = readJsonRules();
     textRules = Object.entries(rules).reduce((res, [id, value]) => {
-      res += `# ${id} begin block >>> >>> >>> \n\n ${value} \n\n# ${id} end block >>> >>> >>>\n\n`;
+      res += `# >>> begin >>>  >>> ${id} \n\n ${value} \n\n# >>> end >>> >>> ${id} \n\n`;
       return res;
     }, '');
     readTextRules.dirty = false;
@@ -54,7 +52,7 @@ const readPort = () => {
 
 module.exports = {
   getTextRules() {
-    return getTextRules();
+    return readTextRules();
   },
   getJsonRules() {
     return readJsonRules();
