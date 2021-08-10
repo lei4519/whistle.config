@@ -1,20 +1,25 @@
 {
   "name": "whistle.config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "whistle 插件，监听项目根目录的配置文件并动态注册 whistle 匹配规则。",
+  "main": "index.js",
   "keywords": [
     "whistle",
     "whistle.config",
     "rules",
     "plugin"
   ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npx tsc && node copy.js"
+  },
   "bin": {
-    "whislte.config": "./bin/index.js"
+    "whistle.config": "./dist/bin/index.js"
   },
   "author": "lei4519",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lei4519/whislte.config"
+    "url": "https://github.com/lei4519/whistle.config"
   },
   "license": "ISC",
   "dependencies": {
@@ -24,8 +29,16 @@
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-hbs": "^1.0.0",
-    "koa-onerror": "^4.1.0",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.12",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.3",
+    "@types/koa-hbs": "^1.0.7",
+    "@types/koa-router": "^7.4.4",
+    "@types/node": "^16.4.13",
+    "typescript": "^4.3.5"
   }
 }

@@ -1,3 +1,2 @@
-exports.uiServer = require('./lib/uiServer');
-exports.rulesServer = require('./lib/rulesServer');
-// exports.resRulesServer = require('./lib/resRulesServer');
+exports.uiServer = require('./dist/lib/uiServer').default;
+exports.rulesServer = require('./dist/lib/rulesServer').default;
