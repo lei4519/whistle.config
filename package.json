@@ -1,6 +1,6 @@
 {
   "name": "whistle.config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "whistle 插件，监听项目根目录的配置文件并动态注册 whistle 匹配规则。",
   "main": "index.js",
   "keywords": [

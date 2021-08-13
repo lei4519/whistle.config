@@ -13,14 +13,16 @@ const service_1 = require("./service");
 const cleanup_1 = require("../common/cleanup");
 const utils_1 = require("../common/utils");
 const cwd = process.cwd();
+const pid = process.pid;
 const handler = utils_1.debounce(async (type, filename) => {
     const filePath = path_1.default.resolve(cwd, filename);
+    const id = `${pid}${cwd}`;
     if (type === "unlink") {
-        service_1.ruleService.delete(cwd);
+        service_1.ruleService.delete(id);
     }
     else {
         const rules = await fs_extra_1.default.readFile(filePath, "utf-8");
-        service_1.ruleService.put(cwd, rules);
+        service_1.ruleService.put(id, rules);
     }
 }, 500);
 const watcher = chokidar_1.default.watch(const_1.watchFiles, {

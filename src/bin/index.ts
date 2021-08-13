@@ -8,7 +8,7 @@ import { ruleService } from "./service";
 import { Cleanup } from "../common/cleanup";
 import { debounce } from "../common/utils";
 const cwd = process.cwd();
-
+const pid = process.pid;
 const handler = debounce(
   async (
     type: "add" | "addDir" | "change" | "unlink" | "unlinkDir",
@@ -16,11 +16,12 @@ const handler = debounce(
   ) => {
     const filePath = path.resolve(cwd, filename);
 
+    const id = `${pid}${cwd}`
     if (type === "unlink") {
-      ruleService.delete(cwd);
+      ruleService.delete(id);
     } else {
       const rules = await fs.readFile(filePath, "utf-8");
-      ruleService.put(cwd, rules);
+      ruleService.put(id, rules);
     }
   },
   500

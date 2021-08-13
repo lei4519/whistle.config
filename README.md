@@ -15,9 +15,9 @@
 在确保完成上述 1、2 步骤后，下载并运行示例项目。
 
 ```shell
-git clone git@github.com:lei4519/whistle.config.example.git && 
-cd whistle.config.example && 
-yarn && 
+git clone git@github.com:lei4519/whistle.config.example.git &&
+cd whistle.config.example &&
+yarn &&
 yarn start
 ```
 
@@ -35,4 +35,6 @@ yarn start
 
 正常情况下通过 `ctrl + c` 等方式关闭进程时会将当前项目注册的规则删除掉，但是如果直接关机或关终端的方式则来不及执行操作。
 
-此种情况可以自行在查看页面中点击对应规则的删除按钮进行删除。
+插件启动时会开启一个进程定时（1分钟）检查 `whistle.config` 命令启动的进程是否还存活，如果进程已经结束则会将命令删除。
+
+如果需要立刻删除命令，也可以自行在查看页面中点击对应规则的删除按钮进行删除。
